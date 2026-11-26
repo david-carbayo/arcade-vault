@@ -17,7 +17,7 @@ npm run dev     # dev server (Turbopack), http://localhost:3000
 npm run build   # production build; also type-checks
 npm run start   # serve the production build
 npm run lint    # ESLint (flat config, eslint-config-next core-web-vitals + typescript)
-npx tsc --noEmit  # type-check only
+npx next typegen && npx tsc --noEmit  # type-check only (typegen creates LayoutProps/PageProps)
 ```
 
 There is no test runner set up yet.
@@ -25,7 +25,7 @@ There is no test runner set up yet.
 ## Workflow and CI
 
 - `main` is protected: every change goes through a pull request from its own branch, and the `ci` check must pass with the branch up to date. Direct and force pushes to `main` are refused, admins included.
-- `.github/workflows/ci.yml` (job `ci`) runs `npm ci`, `npm run lint`, `npx tsc --noEmit` and `npm run build` on Node 22. Run the same commands locally before pushing.
+- `.github/workflows/ci.yml` (job `ci`) runs `npm ci`, `npm run lint`, `npx next typegen && npx tsc --noEmit` and `npm run build` on Node 22. Run the same commands locally before pushing.
 
 ## Visual style
 
