@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Arcade Vault is an online platform for playing games and competing for the highest score. It is at the very start: the code is still the Create Next App scaffold (`app/layout.tsx`, `app/page.tsx`, `app/globals.css`).
+Arcade Vault is an online platform for playing games and competing for the highest score. So far it is a visual MVP (SPEC 01): the five screens of the prototype as App Router routes with placeholder content and no data, game logic or accounts.
 
 Work follows Spec Driven Development with the `/spec` and `/spec-impl` skills from [Klerith/fernando-skills](https://github.com/Klerith/fernando-skills) (`npx skills@latest add Klerith/fernando-skills`). Write a spec first, then implement from it; follow the practices that repo recommends.
 
@@ -29,12 +29,18 @@ There is no test runner set up yet.
 
 ## Visual style
 
-`references/templates/styles.css` is the app's chosen look: a dark retro-arcade/neon theme (CSS variables such as `--bg`, `--ink`, `--cyan`, `--magenta`, `--yellow`; fonts "Press Start 2P" for pixel headings and "JetBrains Mono" for body text; perspective grid, scanlines and neon glows). Build UI to match it. The template loads its fonts from Google Fonts in `Arcade Vault.html`: Press Start 2P (400), JetBrains Mono (400, 500, 700) and Courier Prime (400, 700, fallback only); in the app load them with `next/font/google` instead of a `<link>`, and drop the Geist fonts from the scaffold. The only other asset is an inline SVG noise texture (`data:` URL) in `styles.css`; the React, ReactDOM and Babel scripts from unpkg in that HTML are prototype scaffolding, not dependencies. The `.jsx` files beside it are prototype screens to take layout and content from; they are reference only (excluded from ESLint) and use mixed Spanish/English names that should not be copied as-is.
+The app's look is a dark retro-arcade/neon theme, ported verbatim from `references/templates/styles.css` into `app/globals.css` (CSS variables such as `--bg`, `--ink`, `--cyan`, `--magenta`, `--yellow`; perspective grid, scanlines, neon glows and pure-CSS game covers such as `cover-bricks`). Keep the prototype's class names (`av-nav`, `card`, `btn`, `lb-row`…) and build new UI from the existing classes before adding CSS. The only change from the template is that `--pixel` and `--mono` point at the `next/font` variables.
+
+Fonts are loaded in `app/layout.tsx` with `next/font/google` (no requests to Google Fonts): Press Start 2P (`--font-press-start`, pixel headings), JetBrains Mono (`--font-jetbrains-mono`, body text) and Courier Prime (`--font-courier-prime`, fallback). The layout mirrors the template's body: `.av-bg`, `.av-noise` and a `#root` wrapper that the CSS relies on for stacking.
+
+Shared components live in `componentes/` with Spanish PascalCase names (`BarraNavegacion.tsx`, `TarjetaJuego.tsx`…), imported as `@/componentes/...`. Routes and UI text are in Spanish.
+
+`references/templates/` stays as the visual reference: `Arcade Vault.html` with its `.jsx` screens (React from unpkg, so serve the folder over HTTP to view it). It is excluded from ESLint and its mixed Spanish/English names should not be copied.
 
 ## Stack and configuration
 
 - Next.js 16.4 (App Router, `app/`), React 19.3, TypeScript strict. Path alias `@/*` maps to the repo root.
 - Read the version-matched docs in `node_modules/next/dist/docs/` (`01-app`, `02-pages`, `03-architecture`) before using any Next.js API; do not rely on memory.
 - `next.config.ts` turns on `cacheComponents`, `partialPrefetching` and `experimental.agentFeedback`. With Cache Components, data fetching and caching follow the `"use cache"` / Suspense model, so check the docs before adding dynamic data or route config.
-- Tailwind CSS v4 is wired through the `@tailwindcss/turbopack` loader in `next.config.ts` (there is no PostCSS config). Theme tokens live in `app/globals.css` under `@theme inline`, with light/dark values set as CSS variables on `:root`.
+- Tailwind CSS v4 is wired through the `@tailwindcss/turbopack` loader in `next.config.ts` (there is no PostCSS config). It is installed but not imported: `app/globals.css` has no `@import "tailwindcss"`, because its preflight could override the ported styles. Theme tokens are the plain CSS variables on `:root` in `app/globals.css`.
 - Route props use the generated global types (e.g. `LayoutProps<"/">`, `PageProps<"/…">`) rather than hand-written prop types.
