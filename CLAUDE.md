@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Arcade Vault is an online platform for playing games and competing for the highest score. So far it is a visual MVP (SPEC 01): the five screens of the prototype as App Router routes with placeholder content and no data, game logic or accounts.
+Arcade Vault is an online platform for playing games and competing for the highest score. So far it is a visual MVP (SPECs 01 and 02) with placeholder content and no data, game logic or accounts: a landing page at `/`, the game gallery at `/juegos`, and the detail, player, hall of fame and sign-in screens. `/juegos/[slug]` and `/juegos/[slug]/jugar` only accept the slugs in `componentes/slugs.ts`; anything else is a 404.
 
 Work follows Spec Driven Development with the `/spec` and `/spec-impl` skills from [Klerith/fernando-skills](https://github.com/Klerith/fernando-skills) (`npx skills@latest add Klerith/fernando-skills`). Write a spec first, then implement from it; follow the practices that repo recommends.
 
@@ -29,13 +29,13 @@ There is no test runner set up yet.
 
 ## Visual style
 
-The app's look is a dark retro-arcade/neon theme, ported verbatim from `references/templates/styles.css` into `app/globals.css` (CSS variables such as `--bg`, `--ink`, `--cyan`, `--magenta`, `--yellow`; perspective grid, scanlines, neon glows and pure-CSS game covers such as `cover-bricks`). Keep the prototype's class names (`av-nav`, `card`, `btn`, `lb-row`…) and build new UI from the existing classes before adding CSS. The only change from the template is that `--pixel` and `--mono` point at the `next/font` variables.
+The app's look is a dark retro-arcade/neon theme, ported verbatim from `references/templates/styles.css` into `app/globals.css`, followed by the home page blocks (`HOME PAGE`, `ACTIVITY`, `PRICING`) from `references/templates/home-about/styles.css` (CSS variables such as `--bg`, `--ink`, `--cyan`, `--magenta`, `--yellow`; perspective grid, scanlines, neon glows and pure-CSS game covers such as `cover-bricks`). Keep the prototype's class names (`av-nav`, `card`, `btn`, `lb-row`…) and build new UI from the existing classes before adding CSS. The only change from the template is that `--pixel` and `--mono` point at the `next/font` variables.
 
 Fonts are loaded in `app/layout.tsx` with `next/font/google` (no requests to Google Fonts): Press Start 2P (`--font-press-start`, pixel headings), JetBrains Mono (`--font-jetbrains-mono`, body text) and Courier Prime (`--font-courier-prime`, fallback). The layout mirrors the template's body: `.av-bg`, `.av-noise` and a `#root` wrapper that the CSS relies on for stacking.
 
 Shared components live in `componentes/` with Spanish PascalCase names (`BarraNavegacion.tsx`, `TarjetaJuego.tsx`…), imported as `@/componentes/...`. Routes and UI text are in Spanish.
 
-`references/templates/` stays as the visual reference: `Arcade Vault.html` with its `.jsx` screens (React from unpkg, so serve the folder over HTTP to view it). It is excluded from ESLint and its mixed Spanish/English names should not be copied.
+`references/templates/` stays as the visual reference: `Arcade Vault.html` with its `.jsx` screens (React from unpkg, so serve the folder over HTTP to view it). `references/templates/home-about/` is the reference for the home page and for the About page, which is not built yet (`about.jsx` and the `ABOUT PAGE` CSS block); `arcade-vault-standalone.html` there is a single-file build of the whole prototype. The home's sections fade in on scroll through `componentes/Revelar.tsx`, which adds `in` to `.reveal` elements. It is excluded from ESLint and its mixed Spanish/English names should not be copied.
 
 ## Stack and configuration
 
