@@ -17,10 +17,19 @@ npm run dev     # dev server (Turbopack), http://localhost:3000
 npm run build   # production build; also type-checks
 npm run start   # serve the production build
 npm run lint    # ESLint (flat config, eslint-config-next core-web-vitals + typescript)
-npx tsc --noEmit  # type-check only
+npx next typegen && npx tsc --noEmit  # type-check only (typegen creates LayoutProps/PageProps)
 ```
 
 There is no test runner set up yet.
+
+## Workflow and CI
+
+- `main` is protected: every change goes through a pull request from its own branch, and the `ci` check must pass with the branch up to date. Direct and force pushes to `main` are refused, admins included.
+- `.github/workflows/ci.yml` (job `ci`) runs `npm ci`, `npm run lint`, `npx next typegen && npx tsc --noEmit` and `npm run build` on Node 22. Run the same commands locally before pushing.
+
+## Visual style
+
+`references/templates/styles.css` is the app's chosen look: a dark retro-arcade/neon theme (CSS variables such as `--bg`, `--ink`, `--cyan`, `--magenta`, `--yellow`; fonts "Press Start 2P" for pixel headings and "JetBrains Mono" for body text; perspective grid, scanlines and neon glows). Build UI to match it. The template loads its fonts from Google Fonts in `Arcade Vault.html`: Press Start 2P (400), JetBrains Mono (400, 500, 700) and Courier Prime (400, 700, fallback only); in the app load them with `next/font/google` instead of a `<link>`, and drop the Geist fonts from the scaffold. The only other asset is an inline SVG noise texture (`data:` URL) in `styles.css`; the React, ReactDOM and Babel scripts from unpkg in that HTML are prototype scaffolding, not dependencies. The `.jsx` files beside it are prototype screens to take layout and content from; they are reference only (excluded from ESLint) and use mixed Spanish/English names that should not be copied as-is.
 
 ## Stack and configuration
 
