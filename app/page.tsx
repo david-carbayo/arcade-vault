@@ -2,6 +2,22 @@ import Link from "next/link";
 import IconoCaracteristica, { type TipoIcono } from "@/componentes/IconoCaracteristica";
 import Revelar from "@/componentes/Revelar";
 import SiluetasFlotantes from "@/componentes/SiluetasFlotantes";
+import TarjetaMini from "@/componentes/TarjetaMini";
+
+const JUEGOS_DESTACADOS = [
+  { slug: "bloque-buster", titulo: "BLOQUE BUSTER", categoria: "ARCADE", portada: "cover-bricks" },
+  { slug: "caida", titulo: "CAÍDA", categoria: "PUZZLE", portada: "cover-tetro" },
+  { slug: "serpentina", titulo: "SERPENTINA", categoria: "ARCADE", portada: "cover-snake" },
+  { slug: "gloton", titulo: "GLOTÓN", categoria: "ARCADE", portada: "cover-glot" },
+  { slug: "invasores", titulo: "INVASORES", categoria: "SHOOTER", portada: "cover-invaders" },
+  { slug: "rocas", titulo: "ROCAS", categoria: "SHOOTER", portada: "cover-rocas" },
+];
+
+const ESTADISTICAS = [
+  { numero: "12+", unidad: "JUEGOS", subtitulo: "Y CONTANDO" },
+  { numero: "MILES", unidad: "DE PARTIDAS", subtitulo: "JUGADAS CADA DÍA" },
+  { numero: "GLOBAL", unidad: "RANKING", subtitulo: "COMPITE CON EL MUNDO" },
+];
 
 const CARACTERISTICAS: { icono: TipoIcono; titulo: string; descripcion: string; color: string }[] = [
   {
@@ -83,6 +99,36 @@ export default function Inicio() {
               <IconoCaracteristica tipo={f.icono} />
               <div className="ft-title pixel">{f.titulo}</div>
               <div className="ft-desc">{f.descripcion}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-section reveal">
+        <div className="section-head">
+          <div className="kicker pixel neon-cyan">{"// 02"}</div>
+          <h2 className="section-title">JUEGOS DISPONIBLES AHORA</h2>
+          <div className="section-rule"></div>
+        </div>
+        <div className="mini-rail">
+          {JUEGOS_DESTACADOS.map((j) => (
+            <TarjetaMini key={j.slug} {...j} />
+          ))}
+        </div>
+        <div style={{ textAlign: "center", marginTop: 24 }}>
+          <Link href="/juegos" className="btn lg">
+            VER TODOS LOS JUEGOS →
+          </Link>
+        </div>
+      </section>
+
+      <section className="home-stats reveal">
+        <div className="stats-inner">
+          {ESTADISTICAS.map((st, i) => (
+            <div key={st.numero} className="stat-block" style={{ transitionDelay: i * 90 + "ms" }}>
+              <div className="stat-n neon-yellow">{st.numero}</div>
+              <div className="stat-u pixel">{st.unidad}</div>
+              <div className="stat-s">{st.subtitulo}</div>
             </div>
           ))}
         </div>
