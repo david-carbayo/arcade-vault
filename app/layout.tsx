@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Courier_Prime, JetBrains_Mono, Press_Start_2P } from "next/font/google";
+import BarraNavegacion from "@/componentes/BarraNavegacion";
+import PieDePagina from "@/componentes/PieDePagina";
 import "./globals.css";
 
 const pressStart = Press_Start_2P({
@@ -40,7 +42,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <div className="av-bg" />
         <div className="av-noise" />
-        <div id="root">{children}</div>
+        <div id="root">
+          <BarraNavegacion />
+          <main className="av-main">{children}</main>
+          <PieDePagina />
+        </div>
       </body>
     </html>
   );
