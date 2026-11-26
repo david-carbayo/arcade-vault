@@ -1,6 +1,6 @@
 # SPEC 01 — MVP visual de las pantallas de Arcade Vault
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** ninguna
 > **Fecha:** 2026-11-26
 > **Objetivo:** Portar a Next.js las cinco pantallas de `references/templates/` con su estilo, como maqueta navegable sin datos ni lógica de juego.
@@ -151,6 +151,8 @@ Convenciones:
 - **Sí:** copiar «CRÉDITOS · 03» y la versión del pie tal cual. Se cambian cuando haya créditos y versión reales.
 - **Sí:** un commit por paso (`AutoCommitSteps: true`), con mensaje `spec-01-step-NN`.
 - **Sí:** verificar el parecido con capturas lado a lado a 1440 px y 375 px, en lugar de «a simple vista».
+- **Sí (en implementación):** `ensureStatic = "navigation"` e `instant = false` en `/juegos/[slug]` y `/juegos/[slug]/jugar`. Sin `ensureStatic`, un slug desconocido mostraba la 404 pero respondía 200, porque la respuesta ya había empezado. `instant = false` declara que la ruta puede bloquear; sin él, `next dev` avisa de `params` fuera de `<Suspense>`.
+- **No (en implementación):** leer `params` dentro de `<Suspense>`. Quita el aviso, pero los slugs desconocidos vuelven a responder 200.
 - **Sí:** solo es interactivo el menú móvil. El resto de estados (búsqueda, chips, pestañas, pausa, modal) se muestran en su estado inicial.
 - **Sí:** nombres de componentes y archivos en español. El prototipo mezcla idiomas («biblioteca» y `Library`) y el usuario eligió español.
 - **Sí:** conservar los nombres de clases CSS del prototipo. Renombrarlos obligaría a reescribir `styles.css`.
