@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { esSlugDeEjemplo, SLUGS_DE_EJEMPLO } from "@/componentes/slugs";
 
 // Unknown slugs wait for the full render, so notFound() can still send a 404 status.
+// That means params is awaited outside <Suspense>, so this route is allowed to block.
 export const ensureStatic = "navigation";
+export const instant = false;
 
 export function generateStaticParams() {
   return SLUGS_DE_EJEMPLO.map((slug) => ({ slug }));
