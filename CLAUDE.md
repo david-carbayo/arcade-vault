@@ -29,7 +29,7 @@ There is no test runner set up yet.
 
 ## Visual style
 
-`references/templates/styles.css` is the app's chosen look: a dark retro-arcade/neon theme (CSS variables such as `--bg`, `--ink`, `--cyan`, `--magenta`, `--yellow`; fonts "Press Start 2P" for pixel headings and "JetBrains Mono" for body text; perspective grid, scanlines and neon glows). Build UI to match it. The `.jsx` files beside it are prototype screens to take layout and content from; they are reference only (excluded from ESLint) and use mixed Spanish/English names that should not be copied as-is.
+`references/templates/styles.css` is the app's chosen look: a dark retro-arcade/neon theme (CSS variables such as `--bg`, `--ink`, `--cyan`, `--magenta`, `--yellow`; fonts "Press Start 2P" for pixel headings and "JetBrains Mono" for body text; perspective grid, scanlines and neon glows). Build UI to match it. The template loads its fonts from Google Fonts in `Arcade Vault.html`: Press Start 2P (400), JetBrains Mono (400, 500, 700) and Courier Prime (400, 700, fallback only); in the app load them with `next/font/google` instead of a `<link>`, and drop the Geist fonts from the scaffold. The only other asset is an inline SVG noise texture (`data:` URL) in `styles.css`; the React, ReactDOM and Babel scripts from unpkg in that HTML are prototype scaffolding, not dependencies. The `.jsx` files beside it are prototype screens to take layout and content from; they are reference only (excluded from ESLint) and use mixed Spanish/English names that should not be copied as-is.
 
 ## Stack and configuration
 
