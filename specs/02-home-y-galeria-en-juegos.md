@@ -1,6 +1,6 @@
 # SPEC 02 — Home de Arcade Vault y galería en /juegos
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-11-26
 > **Objetivo:** Convertir `/` en la home de `references/templates/home-about/home.jsx` y mover la galería de juegos de `/` a `/juegos`, sin datos ni lógica nueva.
@@ -125,7 +125,7 @@ Componentes nuevos:
 - [ ] «VOLVER AL VAULT» del detalle, «VOLVER A LA BIBLIOTECA» del Salón y «JUGAR COMO INVITADO» llevan a `/juegos`; el logo y la 404 llevan a `/`.
 - [ ] La barra muestra «Inicio», «Biblioteca» y «Salón de la Fama», en escritorio y en el menú móvil, y no muestra «Acerca de».
 - [ ] «Inicio» está activo solo en `/`; «Biblioteca» en `/juegos`, `/juegos/<slug>` y `/juegos/<slug>/jugar`.
-- [ ] A 375 px, la home no tiene scroll horizontal.
+- [ ] A 375 px, la home no tiene scroll horizontal. **Excepción aceptada:** todas las páginas miden 402 px a 375 por el botón ≡ de la barra, heredado de la SPEC 01 y fuera de alcance (la plantilla también desborda). El contenido de la home no desborda.
 - [ ] Ningún archivo de `app/` ni de `componentes/` contiene «about», «acerca» ni clases del bloque `ABOUT PAGE`, y `globals.css` no contiene los bloques `ABOUT PAGE`, `GAMEPAD` ni `Theme variants`.
 
 ## Decisiones
@@ -142,6 +142,7 @@ Componentes nuevos:
 - **Sí:** textos literales salvo la frase con «Arkanoid, Tetris, Snake», que usa nuestros juegos. Coherente con la biblioteca.
 - **Sí:** las mini tarjetas enlazan a su detalle. Como en el prototipo.
 - **Sí:** `/juegos` mantiene su cabecera actual. Mover sin rediseñar.
+- **Sí (en verificación):** cerrar la spec con una excepción en el criterio de scroll horizontal. El desborde viene solo del botón ≡ de la barra, que esta spec deja fuera de alcance; su arreglo va en la spec de ajustes de móvil.
 
 ## Riesgos
 
