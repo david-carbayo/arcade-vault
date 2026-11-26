@@ -22,6 +22,15 @@ npx tsc --noEmit  # type-check only
 
 There is no test runner set up yet.
 
+## Workflow and CI
+
+- `main` is protected: every change goes through a pull request from its own branch, and the `ci` check must pass with the branch up to date. Direct and force pushes to `main` are refused, admins included.
+- `.github/workflows/ci.yml` (job `ci`) runs `npm ci`, `npm run lint`, `npx tsc --noEmit` and `npm run build` on Node 22. Run the same commands locally before pushing.
+
+## Visual style
+
+`references/templates/styles.css` is the app's chosen look: a dark retro-arcade/neon theme (CSS variables such as `--bg`, `--ink`, `--cyan`, `--magenta`, `--yellow`; fonts "Press Start 2P" for pixel headings and "JetBrains Mono" for body text; perspective grid, scanlines and neon glows). Build UI to match it. The `.jsx` files beside it are prototype screens to take layout and content from; they are reference only (excluded from ESLint) and use mixed Spanish/English names that should not be copied as-is.
+
 ## Stack and configuration
 
 - Next.js 16.4 (App Router, `app/`), React 19.3, TypeScript strict. Path alias `@/*` maps to the repo root.
