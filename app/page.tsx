@@ -33,6 +33,24 @@ const TOP_JUGADORES = [
 
 const CLASE_PODIO = [" top1", " top2", " top3"];
 
+const PREGUNTAS = [
+  {
+    pregunta: "¿REALMENTE ES GRATIS?",
+    respuesta:
+      'Sí. Arcade Vault es un proyecto sin fines de lucro hecho por amor a los clásicos. No hay versión "premium" escondida.',
+  },
+  {
+    pregunta: "¿NECESITO CREAR CUENTA?",
+    respuesta:
+      "No. Puedes jugar como invitado. Si quieres guardar tu puntuación y aparecer en el ranking, regístrate en 10 segundos.",
+  },
+  {
+    pregunta: "¿CÓMO SOBREVIVEN SIN COBRAR?",
+    respuesta:
+      "Es un proyecto comunitario. Si te gusta, compártelo. Esa es toda la moneda que aceptamos.",
+  },
+];
+
 const ESTADISTICAS = [
   { numero: "12+", unidad: "JUEGOS", subtitulo: "Y CONTANDO" },
   { numero: "MILES", unidad: "DE PARTIDAS", subtitulo: "JUGADAS CADA DÍA" },
@@ -198,6 +216,59 @@ export default function Inicio() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="home-section reveal">
+        <div className="section-head">
+          <div className="kicker pixel neon-green">{"// 04"}</div>
+          <h2 className="section-title">PRECIOS</h2>
+          <div className="section-rule"></div>
+        </div>
+        <div className="pricing-grid">
+          <div className="price-card">
+            <div className="pc-label pixel">PLAN ÚNICO</div>
+            <div className="pc-name pixel">JUGADOR VAULT</div>
+            <div className="pc-amount">
+              <span className="pc-amount-n">$0</span>
+              <span className="pc-amount-u">/ SIEMPRE</span>
+            </div>
+            <div className="pc-tag">SIN TRUCOS · SIN LETRA PEQUEÑA</div>
+            <ul className="pc-list">
+              <li>✔ Acceso a todos los juegos</li>
+              <li>✔ Ranking global y salón de la fama</li>
+              <li>✔ Sin anuncios entre partidas</li>
+              <li>✔ Guarda tus puntuaciones</li>
+              <li>✔ Nuevos juegos cada mes</li>
+              <li>✔ Funciona en cualquier navegador</li>
+            </ul>
+            <Link href="/acceso" className="btn xl pulse" style={{ width: "100%" }}>
+              EMPEZAR GRATIS →
+            </Link>
+            <div className="pc-foot">No pedimos tarjeta. Nunca lo haremos.</div>
+            <div className="pc-stamp pixel">
+              FREE
+              <br />
+              PLAY
+            </div>
+          </div>
+
+          <div className="pricing-faq">
+            {PREGUNTAS.map((p) => (
+              <div key={p.pregunta} className="faq-item">
+                <div className="faq-q pixel">{p.pregunta}</div>
+                <div className="faq-a">{p.respuesta}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="home-final reveal">
+        <h2 className="final-title pixel">¿LISTO PARA JUGAR?</h2>
+        <Link href="/juegos" className="btn xl pulse final-cta">
+          INSERTAR MONEDA →
+        </Link>
+        <div className="final-tag">Gratis. Sin registro obligatorio. Empieza en segundos.</div>
       </section>
 
       <Revelar />
