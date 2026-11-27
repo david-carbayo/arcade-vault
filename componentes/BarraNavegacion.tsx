@@ -4,10 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-type Seccion = "biblioteca" | "salon" | "acceso" | null;
+type Seccion = "inicio" | "biblioteca" | "salon" | "acceso" | null;
 
 function seccionActiva(ruta: string): Seccion {
-  if (ruta === "/" || ruta.startsWith("/juegos/")) return "biblioteca";
+  if (ruta === "/") return "inicio";
+  if (ruta === "/juegos" || ruta.startsWith("/juegos/")) return "biblioteca";
   if (ruta === "/salon-de-la-fama") return "salon";
   if (ruta === "/acceso") return "acceso";
   return null;
@@ -29,7 +30,10 @@ export default function BarraNavegacion() {
           </div>
         </Link>
         <div className="links">
-          <Link href="/" className={claseActiva("biblioteca")}>
+          <Link href="/" className={claseActiva("inicio")}>
+            Inicio
+          </Link>
+          <Link href="/juegos" className={claseActiva("biblioteca")}>
             Biblioteca
           </Link>
           <Link href="/salon-de-la-fama" className={claseActiva("salon")}>
@@ -63,7 +67,10 @@ export default function BarraNavegacion() {
         <div className="pixel neon-cyan" style={{ fontSize: 11, marginBottom: 16 }}>
           MENÚ
         </div>
-        <Link href="/" className={claseActiva("biblioteca")} onClick={cerrar}>
+        <Link href="/" className={claseActiva("inicio")} onClick={cerrar}>
+          Inicio
+        </Link>
+        <Link href="/juegos" className={claseActiva("biblioteca")} onClick={cerrar}>
           Biblioteca
         </Link>
         <Link href="/salon-de-la-fama" className={claseActiva("salon")} onClick={cerrar}>

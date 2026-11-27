@@ -42,7 +42,7 @@ export default function Acceso() {
           </button>
         </form>
 
-        <Link href="/" className="btn ghost" style={{ width: "100%", marginTop: 10 }}>
+        <Link href="/juegos" className="btn ghost" style={{ width: "100%", marginTop: 10 }}>
           JUGAR COMO INVITADO
         </Link>
 
